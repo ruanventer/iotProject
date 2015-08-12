@@ -49,14 +49,23 @@ def myCommandCallback(cmd):
   elif cmd.command == "off1":  
     print("Turning Light 1 OFF")
     GPIO.output(3,0)
-
+	deviceCli.connect()
+	dataL = { 'LightStatus 1': ls1, 'LightStatus 2': ls2 }
+	deviceCli.publishEvent("lightstatus", "json", dataL)
+	
   elif cmd.command == "on2":  
     print("Turning Light 2 ON")
     GPIO.output(13,1)
+	deviceCli.connect()
+	dataL = { 'LightStatus 1': ls1, 'LightStatus 2': ls2 }
+	deviceCli.publishEvent("lightstatus", "json", dataL)
 
   elif cmd.command == "off2":  
     print("Turning Light 2 OFF")
     GPIO.output(13,0)	
+	deviceCli.connect()
+	dataL = { 'LightStatus 1': ls1, 'LightStatus 2': ls2 }
+	deviceCli.publishEvent("lightstatus", "json", dataL)
 
   print("End of Event")       
 #####################################
@@ -109,5 +118,5 @@ while(1):
 
 # Disconnect the device and application from the cloud
 deviceCli.disconnect()
-#appCli.disconnect()
+
 
